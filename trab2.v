@@ -18,10 +18,10 @@ module alu1(input [5:0] a,b, input [1:0] c, output [5:0] F);
   wire [5:0] And, Xor, AndB, Add;
   wire d1,d2,d3,d4;
 
-  assign d1 = c[1];
-  assign d2 = (~c[1]&~c[0])|(c[1]); 
-  assign d3 = (~c[1]&~c[0])|(c[1]&c[0]);
-  assign d4 = (~c[1]&~c[0])|(c[0]&~c[1])|(c[0]&c[1]);
+  assign d1 = c[0];
+  assign d2 = (~c[0]) | (c[1]); 
+  assign d3 = (~c[0]) | (c[1]);
+  assign d4 = (~c[1]) | (c[0]);
 
   assign And = a & b;
   assign Xor = b ^ {6{d1}};
