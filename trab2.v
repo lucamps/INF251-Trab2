@@ -30,3 +30,27 @@ module alu1(input [5:0] a,b, input [1:0] c, output [5:0] F);
   assign F = (d4)?Add:And;
 
 endmodule 
+
+module testbench();
+    reg [5:0] x,y;
+    wire [5:0] s1,s2;
+  reg [1:0] c=0;
+
+  alu1_altonivel teste2(x,y,c,s2);
+  alu1 teste(x,y,c,s1);
+    
+   integer a;
+    initial begin
+       x = 5'b00000;#1
+       y = 5'b00000;#1;     
+       for (a=1; a<64; a=a+1) begin
+            x = x + 8'b0001;#1;
+         	y = y + 8'b0001;#1;
+         	assign c = c+ 1;
+         if(c==4)
+           assign c=0;
+         if ( s1 != s2  ) 
+             $display("Erro");
+        end
+    end
+endmodule
