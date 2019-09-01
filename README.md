@@ -5,10 +5,9 @@ Trabalho 2  da disciplina INF251(Organização de Computadores 1) - UFV 2019/2
   <li>Alto nível - Ok</li>
   <li>Baixo nível - Ok</li>
   <li>Desenho e calcular - Ok</li>
-  <li>Criar testbench</li>
-  <li>Obs: Falta ver o comportamento com números negativos</li>
+  <li>Criar testbench - ok</li>
 </ul>
 <ul>
 <b>Parte 2</b>
-  <li>Ainda nada</li>
+  <li>Alto nivel - ok</li>
 </ul>
