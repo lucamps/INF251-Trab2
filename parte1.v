@@ -31,26 +31,22 @@ module alu1(input [5:0] a,b, input [1:0] c, output [5:0] F);
 
 endmodule 
 
-module testbench();
-    reg [5:0] x,y;
-    wire [5:0] s1,s2;
-  reg [1:0] c=0;
+module testbench;
+    reg [5:0] a,b;
+    reg [1:0] c;
+    wire [5:0] f1,f2;
 
-  alu1_altonivel teste2(x,y,c,s2);
-  alu1 teste(x,y,c,s1);
-    
-   integer a;
+    alu1_altonivel M1(a,b,c,f1);
+    alu1 M2(a,b,c,f2);
+    integer i;     
     initial begin
-       x = 5'b00000;#1
-       y = 5'b00000;#1;     
-       for (a=1; a<64; a=a+1) begin
-            x = x + 8'b0001;#1;
-         	y = y + 8'b0001;#1;
-         	assign c = c+ 1;
-         if(c==4)
-           assign c=0;
-         if ( s1 != s2  ) 
-             $display("Erro");
-        end
-    end
-endmodule
+                
+    $monitor(" a=%d,b=%d c=%d f1 %d f2 %d",a,b,c,f1,f2);
+      for (i=0; i < 16384; i=i+1)
+	      begin 
+          a= i[13:8]; b = i[7:2]; c = i[1:0]; #1;
+          if ( f1 !== f2 ) $display("Falha ! a=%d b=%d c %d",a,b,c);
+      end  // for 
+    end  // initial
+     
+    endmodule
